@@ -1,6 +1,8 @@
 from pathlib import Path
 from datetime import timedelta
 
+import os
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
@@ -12,9 +14,15 @@ SECRET_KEY = 'django-insecure-537(27)ph0t8*!cc09%@k&4^&h+1txgl4rt$^_)f6hru^c7cha
 DEBUG = True
 
 ALLOWED_HOSTS = [
+    "localhost",
     "127.0.0.1",
-    "localhost"
+    "bk-general-health.onrender.com",
 ]
+
+RENDER_EXTERNAL_HOSTNAME = os.environ.get("RENDER_EXTERNAL_HOSTNAME")
+
+if RENDER_EXTERNAL_HOSTNAME:
+    ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
 
 
 # =========================
